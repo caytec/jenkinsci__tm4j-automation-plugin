@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,7 +69,7 @@ public class FileReader {
     }
 
     private File createZip(List<File> files) throws IOException {
-        File zip = File.createTempFile("tm4j", ".zip");
+        File zip = Files.createTempFile("tm4j", ".zip").toFile();
         ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zip));
         for (File file : files) {
             out.putNextEntry(new ZipEntry(file.getPath()));
